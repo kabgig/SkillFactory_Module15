@@ -1,18 +1,17 @@
-import java.time.Duration;
-import java.time.LocalTime;
+import java.time.*;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Main {
     public static void main(String[] args) {
-        var res = timeMethod(LocalTime.of(13, 30), Duration.ofHours(3));
+        Date date = new Date(2030-1900, Calendar.JULY, 25, 12, 31);
+        var res = timeConverter(date);
         System.out.println(res);
     }
-    public static boolean timeMethod (LocalTime localTime, Duration dur){
+    public static LocalTime timeConverter(Date date){
+        Instant instant = date.toInstant();
+        return LocalTime.ofInstant(instant,ZoneId.of("Europe/Moscow"));
 
-        Duration duration = Duration.between((localTime.plus(dur)), LocalTime.now());
-        long milliseconds = duration.toMillis();
-        System.out.println(milliseconds);
 
-        if(milliseconds > 0) return true;
-        else return false;
     }
 }
