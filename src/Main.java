@@ -1,11 +1,18 @@
-import java.time.LocalDate;
+import java.time.Duration;
 import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(ZonedDateTime.of(LocalDate.now(), LocalTime.now(ZoneId.of("Europe/Moscow")), ZoneId.of("Europe/Moscow")));
-        ;
+        var res = timeMethod(LocalTime.of(13, 30), Duration.ofHours(3));
+        System.out.println(res);
+    }
+    public static boolean timeMethod (LocalTime localTime, Duration dur){
+
+        Duration duration = Duration.between((localTime.plus(dur)), LocalTime.now());
+        long milliseconds = duration.toMillis();
+        System.out.println(milliseconds);
+
+        if(milliseconds > 0) return true;
+        else return false;
     }
 }
