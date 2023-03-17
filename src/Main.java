@@ -1,17 +1,11 @@
-import java.time.*;
-import java.util.Calendar;
-import java.util.Date;
-
 public class Main {
     public static void main(String[] args) {
-        Date date = new Date(2030-1900, Calendar.JULY, 25, 12, 31);
-        var res = timeConverter(date);
-        System.out.println(res);
+        doubleFromString(5,val -> Double.valueOf(val));
     }
-    public static LocalTime timeConverter(Date date){
-        Instant instant = date.toInstant();
-        return LocalTime.ofInstant(instant,ZoneId.of("Europe/Moscow"));
-
-
+    public static double doubleFromString(int value, Worker worker) {
+        return worker.rework(value);
+    }
+    public interface Worker {
+        double rework(int value);
     }
 }
