@@ -1,11 +1,21 @@
+import java.util.Optional;
+import java.util.Random;
+
 public class Main {
     public static void main(String[] args) {
-        doubleFromString(5,val -> Double.valueOf(val));
+        guesser(4).ifPresent(System.out::println);
     }
-    public static double doubleFromString(int value, Worker worker) {
-        return worker.rework(value);
-    }
-    public interface Worker {
-        double rework(int value);
+
+    public static Optional<String> guesser(int guess) {
+        Random random = new Random();
+        int rand;
+
+        if (guess < 1 || guess > 5) throw new IllegalStateException();
+        else rand = random.nextInt(5);
+        System.out.println(rand);
+
+        return (guess == rand) ?
+                  Optional.of("Поздравляем! Вы угадали значение!") :
+                  Optional.empty();
     }
 }
