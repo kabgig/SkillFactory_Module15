@@ -1,21 +1,14 @@
-import java.util.Optional;
-import java.util.Random;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
-        guesser(4).ifPresent(System.out::println);
-    }
-
-    public static Optional<String> guesser(int guess) {
-        Random random = new Random();
-        int rand;
-
-        if (guess < 1 || guess > 5) throw new IllegalStateException();
-        else rand = random.nextInt(5);
-        System.out.println(rand);
-
-        return (guess == rand) ?
-                  Optional.of("Поздравляем! Вы угадали значение!") :
-                  Optional.empty();
+        List<String> list = Arrays.asList("1", "2", "3", "4", "5");
+        list
+                .stream()
+                .map(Integer::parseInt)
+                .reduce((x,y) -> x*y)
+                .ifPresent(System.out::println);
     }
 }
