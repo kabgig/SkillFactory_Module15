@@ -1,21 +1,30 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
-        List<String> list = Arrays.asList("1", "2", "3", "4", "5");
-        ArrayList<Integer> objects = new ArrayList<>();
-        for (var i : list){
-            objects.add(Integer.parseInt(i));
+        List<Double> list = Arrays.asList(117d, 12.2d, 66d, 18.5d);
+        List<String> list2 = Arrays.asList("15", "18.5", "117", "22.2");
+        List<Double> doubles = list2
+                .stream()
+                .map(Double::parseDouble)
+                .collect(Collectors.toList());
+        Stream.of(list, doubles)
+                .flatMap(l -> l.stream())
+                .sorted(Comparator.reverseOrder())
+                .distinct()
+                .forEach(System.out::println);
+        /*List<Double> list = Arrays.asList(117d, 12.2d, 66d, 18.5d);
+        List<String> list2 = Arrays.asList("15", "18.5", "117", "22.2");
+        List<Double> doubles = new ArrayList<>();
+        for (String s : list2) {
+            doubles.add(Double.valueOf(s));
         }
-        Iterator<Integer> iterator = objects.iterator();
-        int result = 1;
-        while (iterator.hasNext()){
-            result *= iterator.next();
-        }
-        System.out.println(result);
-
+        Set<Double> sortedDoubles = new TreeSet<>(Comparator.reverseOrder());
+        sortedDoubles.addAll(list);
+        sortedDoubles.addAll(doubles);
+        for (double d : sortedDoubles) {
+            System.out.println(d);}*/
     }
 }
