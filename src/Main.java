@@ -1,29 +1,23 @@
-import java.io.FileWriter;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.Writer;
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.stream.Stream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException, IOException {
-        Writer writer = new FileWriter("/Users/ansarismagilov/Desktop/FileForWriting.txt");
-        String line = "";
-        Deque<String> nums = new ArrayDeque<>();
+    public static void main(String[] args) throws IOException {
+        Path path = Paths.get("src/numbers.txt");
+        List<String> lines = Files.readAllLines(path);
 
-        //creating file with numbers
-        for (int i = 1; i < 10; i++) {
-            var stream = Stream.iterate(1, x -> x + 1);
-            nums.addLast("\n");
-            stream.limit(i).forEach(s -> nums.addLast(s.toString()));
+        try (BufferedWriter bW = Files.newBufferedWriter(Paths.get("src/result.txt"));) {
+            for (int i = lines.size() - 1; i >= 0; i--) {
+                bW.write(lines.get(i));
+                bW.write("\n");
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-
-        //writing
-        while((line = nums.pollLast()) != null){
-            writer.write(line);
-            System.out.print(line);
-        }
-        writer.close();
-
     }
 }
