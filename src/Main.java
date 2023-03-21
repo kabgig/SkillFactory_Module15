@@ -17,8 +17,8 @@ import java.util.stream.Collectors;
 public class Main {
     public static void main(String[] args) {
         Calendar instance = Calendar.getInstance();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("(dd.MM.yyyy)");
-        SimpleDateFormat dateFormatPrint = new SimpleDateFormat("(ddMMyy)");
+        var dateFormat = new SimpleDateFormat("(dd.MM.yyyy)");
+        var dateFormatPrint = new SimpleDateFormat("(ddMMyy)");
         String date = dateFormat.format(instance.getTime());
         String datePrint = dateFormatPrint.format(instance.getTime());
 
