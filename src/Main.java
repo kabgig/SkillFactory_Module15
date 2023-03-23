@@ -45,8 +45,8 @@ public class Main {
                 sum += i.getValue();
             }
             fw.write("Итого: " + sum + " руб. " + date);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (IOException b) {
+            throw new RuntimeException(b);
         }
 
 
